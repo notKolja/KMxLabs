@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMxLabs — Applied Research &amp; Product Studio</title>
+<title>KMxLabs — Software, Web &amp; Infrastructure Lab von Kolja Menzel</title>
+<meta name="description" content="KMxLabs – Software Development, Web, Server Infrastructure und technische Projekte von Kolja Menzel. Projekte und Experimente rund um Java, Kotlin, Backend-Systeme, Web und Infrastructure.">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,14 +57,16 @@
     transition:transform 0.4s ease;
   }
   nav.is-visible{ transform:translateY(0); }
-  .nav-brand{ display:flex; align-items:center; gap:0.6rem; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem; }
+  .nav-brand{ display:flex; align-items:center; gap:0.6rem; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem; text-decoration:none; }
   .nav-brand img{ height:26px; width:auto; display:block; }
   .nav-brand .lb{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .nav-links{ display:flex; gap:2.2rem; }
+  .nav-links{ display:flex; align-items:center; gap:2.2rem; }
   .nav-links a{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.04em; text-decoration:none; color:var(--ink-soft); position:relative; }
   .nav-links a::after{ content:''; position:absolute; left:0; right:0; bottom:-5px; height:1px; background:var(--purple); transform:scaleX(0); transform-origin:left; transition:transform 0.3s ease; }
   .nav-links a:hover::after{ transform:scaleX(1); }
-  @media (max-width:720px){ .nav-links{ display:none; } }
+  .nav-links a.nav-cta{ padding:0.5rem 1rem; background:var(--ink); color:var(--paper); border-radius:2px; }
+  .nav-links a.nav-cta::after{ display:none; }
+  @media (max-width:780px){ .nav-links a:not(.nav-cta){ display:none; } }
 
   .collage{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
   .blk{ position:absolute; }
@@ -101,68 +104,98 @@
   .swatches{ position:relative; z-index:3; display:flex; gap:10px; }
   .swatches i{ width:20px; height:20px; display:block; }
 
-  #hero-reveal{ z-index:1; flex-direction:column; gap:1.4rem; text-align:center; padding:0 6vw; opacity:0; }
+  #hero-reveal{ z-index:1; flex-direction:column; gap:1.6rem; text-align:center; padding:0 6vw; opacity:0; }
   #hero-reveal .eyebrow{ font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--purple); }
-  #hero-reveal h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem, 5vw, 3.2rem); max-width:20ch; line-height:1.15; }
-  #hero-reveal p{ max-width:48ch; color:var(--ink); opacity:0.72; font-size:1rem; line-height:1.6; }
+  #hero-reveal h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem, 5vw, 3.2rem); max-width:22ch; line-height:1.15; }
+  #hero-reveal p{ max-width:52ch; color:var(--ink); opacity:0.72; font-size:1rem; line-height:1.6; }
+
+  .btn-row{ display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap; margin-top:0.4rem; }
+  .btn{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; padding:0.85rem 1.7rem; border-radius:2px; display:inline-block; transition:transform 0.25s ease, opacity 0.25s ease; }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.secondary{ background:transparent; color:var(--ink); border:1px solid var(--ink); }
 
   .scroll-cue{ position:absolute; bottom:6%; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono', monospace; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink); opacity:0.5; z-index:4; }
 
   section{ position:relative; padding:9rem 6vw; }
   .eyebrow-standalone{ font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--purple); display:block; margin-bottom:1.2rem; }
 
-  .intro{ max-width:760px; margin:0 auto; text-align:center; }
+  .intro{ max-width:780px; margin:0 auto; text-align:center; }
   .intro h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem, 4.5vw, 3rem); line-height:1.25; }
   .intro h2 em{ font-style:normal; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .intro p{ margin-top:1.6rem; color:var(--ink-soft); font-size:1.02rem; line-height:1.75; text-align:left; }
+  .intro p + p{ margin-top:1rem; }
+
+  .about-me{ max-width:780px; margin:5.5rem auto 0; padding-top:4.5rem; border-top:1px solid var(--line); }
+  .about-me h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.5rem,3.4vw,2.1rem); margin-bottom:1.4rem; }
+  .about-me p{ color:var(--ink-soft); font-size:1.02rem; line-height:1.75; }
+  .about-me p + p{ margin-top:1rem; }
+  .about-me strong{ color:var(--ink); }
 
   .reveal-on-scroll{ opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease; }
   .reveal-on-scroll.is-visible{ opacity:1; transform:translateY(0); }
 
-  .stats{ display:grid; grid-template-columns:repeat(4,1fr); max-width:1000px; margin:4.5rem auto 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .stat{ padding:2.2rem 1rem; text-align:center; border-left:1px solid var(--line); }
-  .stat:first-child{ border-left:none; }
-  .stat .num{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(1.8rem,4vw,2.6rem); background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .stat .lbl{ font-size:0.78rem; color:var(--ink-soft); opacity:0.7; margin-top:0.4rem; }
-  @media (max-width:720px){ .stats{ grid-template-columns:1fr 1fr; } .stat:nth-child(3){ border-left:none; } }
-
+  /* dark skills grid ("What I Do") */
   .pillars{ background:var(--ink); color:var(--paper); }
   .pillars .eyebrow-standalone{ color:var(--gold); }
   .pillars-head{ max-width:640px; margin:0 auto; text-align:center; }
   .pillars-head h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem,4.5vw,3rem); }
-  .pillars-grid{ max-width:1100px; margin:4.5rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
-  .pillar{ background:var(--ink); padding:2.8rem 2.1rem; position:relative; transition:background 0.35s ease; }
+  .pillars-grid{ max-width:1180px; margin:4.5rem auto 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+  .pillar{ background:var(--ink); padding:2.6rem 2rem; position:relative; transition:background 0.35s ease; }
   .pillar:hover{ background:var(--ink-soft); }
-  .pillar .mark{ width:20px; height:20px; margin-bottom:1.6rem; }
-  .pillar h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.2rem; margin-bottom:0.8rem; }
-  .pillar p{ font-size:0.92rem; line-height:1.65; color:var(--paper); opacity:0.66; }
-  @media (max-width:720px){ .pillars-grid{ grid-template-columns:1fr; } }
+  .pillar .mark{ width:20px; height:20px; margin-bottom:1.5rem; }
+  .pillar h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.15rem; margin-bottom:0.7rem; }
+  .pillar p{ font-size:0.9rem; line-height:1.6; color:var(--paper); opacity:0.66; margin-bottom:1rem; }
+  .pillar .chips{ display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .pillar .chips span{ font-family:'JetBrains Mono', monospace; font-size:0.68rem; padding:0.25rem 0.55rem; border:1px solid var(--line-dark); border-radius:20px; color:var(--paper); opacity:0.6; }
 
-  .process-head{ max-width:640px; margin:0 auto 4rem; text-align:center; }
-  .process-head h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem,4.5vw,3rem); }
-  .process-list{ max-width:840px; margin:0 auto; }
-  .step{ display:grid; grid-template-columns:64px 1fr; gap:1.6rem; padding:2.2rem 0; border-top:1px solid var(--line); }
-  .step:last-child{ border-bottom:1px solid var(--line); }
-  .step .idx{ font-family:'JetBrains Mono', monospace; font-size:0.85rem; color:var(--purple); padding-top:0.2rem; }
-  .step h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.25rem; margin-bottom:0.55rem; }
-  .step p{ color:var(--ink-soft); opacity:0.75; font-size:0.95rem; line-height:1.6; max-width:52ch; }
-  @media (max-width:720px){ .step{ grid-template-columns:1fr; gap:0.6rem; } }
+  /* light card grid ("Project Areas") */
+  .areas-head{ max-width:640px; margin:0 auto 4rem; text-align:center; }
+  .areas-head h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem,4.5vw,3rem); }
+  .areas-grid{ max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .area-card{ background:var(--paper); padding:2.6rem 2.1rem; }
+  .area-card .mark{ width:20px; height:20px; margin-bottom:1.5rem; }
+  .area-card h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.15rem; margin-bottom:0.7rem; }
+  .area-card p{ font-size:0.92rem; line-height:1.65; color:var(--ink-soft); opacity:0.85; margin-bottom:1rem; }
+  .area-card .chips{ display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .area-card .chips span{ font-family:'JetBrains Mono', monospace; font-size:0.68rem; padding:0.25rem 0.55rem; border:1px solid var(--line); border-radius:20px; color:var(--ink-soft); }
 
-  .quote-section{ background:var(--lilac); }
-  .quote-wrap{ max-width:780px; margin:0 auto; text-align:center; position:relative; }
-  .quote-wrap .mark-quote{ font-family:'Space Grotesk', sans-serif; font-size:4rem; line-height:1; color:var(--purple); opacity:0.5; margin-bottom:0.4rem; }
-  .quote-wrap p.q{ font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:clamp(1.35rem, 3vw, 2rem); line-height:1.45; color:var(--ink); }
-  .quote-wrap .attr{ margin-top:1.6rem; font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--ink-soft); opacity:0.7; }
+  /* stack */
+  .stack-head{ max-width:640px; margin:0 auto 4rem; text-align:center; }
+  .stack-head h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:clamp(1.8rem,4.5vw,3rem); }
+  .stack-grid{ max-width:960px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:2.6rem 2rem; }
+  .stack-cat h4{ font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple); margin-bottom:1rem; }
+  .stack-cat .chips{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+  .stack-cat .chips span{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; padding:0.4rem 0.75rem; background:var(--paper-dim); border-radius:2px; color:var(--ink); }
 
+  /* philosophy */
+  .philosophy{ background:var(--lilac); }
+  .phil-wrap{ max-width:780px; margin:0 auto; text-align:center; }
+  .phil-wrap .mark-quote{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; color:var(--purple-dp); margin-bottom:1.6rem; }
+  .phil-wrap p{ font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:clamp(1.1rem, 2.2vw, 1.4rem); line-height:1.6; color:var(--ink); max-width:60ch; margin:0 auto; }
+
+  .principles-grid{ max-width:960px; margin:4.5rem auto 0; display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:2px; background:rgba(25,27,36,0.12); border:1px solid rgba(25,27,36,0.12); }
+  .principle{ background:var(--lilac); padding:2rem 1.8rem; }
+  .principle h4{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.05rem; margin-bottom:0.6rem; }
+  .principle p{ font-family:'Inter', sans-serif; font-weight:400; font-size:0.9rem; line-height:1.6; color:var(--ink-soft); text-align:left; }
+
+  /* cta / footer */
   footer{ background:var(--grad); color:var(--paper); text-align:center; overflow:hidden; }
-  footer h2{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(2rem, 6vw, 4rem); letter-spacing:-0.01em; margin-bottom:1.6rem; }
+  footer h2{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(2rem, 6vw, 4rem); letter-spacing:-0.01em; margin-bottom:0.8rem; }
+  footer .foot-tagline{ font-family:'JetBrains Mono', monospace; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.75; margin-bottom:2.2rem; }
   footer .cta-btn{ display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple-dp); background:var(--paper); padding:0.9rem 2.1rem; border-radius:2px; text-decoration:none; transition:transform 0.25s ease; }
   footer .cta-btn:hover{ transform:translateY(-2px); }
+  footer .cta-btn.outline{ background:transparent; color:var(--paper); border:1px solid rgba(243,242,247,0.55); }
   footer .foot-meta{ margin-top:5.5rem; display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono', monospace; font-size:0.72rem; opacity:0.75; letter-spacing:0.05em; }
   footer .foot-meta img{ height:20px; opacity:0.9; filter:brightness(0) invert(1); }
   footer .foot-brand{ display:flex; align-items:center; gap:0.6rem; }
+  footer .foot-links{ display:flex; gap:1.4rem; }
+  footer .foot-links a{ text-decoration:none; opacity:0.85; }
+  footer .foot-links a:hover{ opacity:1; text-decoration:underline; }
 
   @media (max-width:720px){
     section{ padding:6.5rem 7vw; }
+    .about-me{ margin-top:4rem; padding-top:3rem; }
     footer .foot-meta{ flex-direction:column; gap:0.9rem; text-align:center; }
   }
 
@@ -177,14 +210,16 @@
 <div class="grain-overlay" aria-hidden="true"></div>
 
 <nav id="siteNav">
-  <div class="nav-brand">
+  <a href="#" class="nav-brand">
     <img src="assets/logo-icon.png" alt="">
     <span>KMx<span class="lb">Labs</span></span>
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="#services">Leistungen</a>
-    <a href="#process">Prozess</a>
-    <a href="#contact">Kontakt</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com/" class="nav-cta" target="_blank" rel="noopener">GitHub</a>
   </div>
 </nav>
 
@@ -192,9 +227,13 @@
     <div class="hero-pin">
 
       <div class="hero-layer" id="hero-reveal">
-        <span class="eyebrow">01 — Was wir tun</span>
-        <h2>Wir bauen Werkzeuge, die verschwinden, sobald man sie beherrscht.</h2>
-        <p>KMxLabs verbindet angewandte Forschung mit Produktarbeit — kompromisslos in der Ausführung, zurückhaltend in der Form.</p>
+        <span class="eyebrow">Software · Infrastructure · Experiments</span>
+        <h2>Software, Infrastructure &amp; Experiments by KMxLabs.</h2>
+        <p>Ich entwickle eigene Systeme, Webanwendungen und technische Lösungen — mit Fokus auf sauberen Code, sinnvolle Architektur und Projekte, die tatsächlich eingesetzt werden.</p>
+        <div class="btn-row">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="https://github.com/" class="btn secondary" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
 
       <div class="hero-layer" id="hero-front">
@@ -238,7 +277,7 @@
           </span>
         </div>
 
-        <div class="tagline">Applied Research &amp; Product Studio</div>
+        <div class="tagline">Code. Systems. Ideas.</div>
 
         <div class="swatches">
           <i style="background:var(--purple-dp);"></i>
@@ -252,85 +291,177 @@
     </div>
   </div>
 
-  <section>
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
     <div class="intro reveal-on-scroll">
-      <span class="eyebrow-standalone">Über uns</span>
-      <h2>Forschung, die man <em>anfassen</em> kann. Produkte, die man <em>versteht</em>.</h2>
+      <span class="eyebrow-standalone">About KMxLabs</span>
+      <h2>Ein persönliches <em>Development Lab</em> für Software, Web und Infrastruktur.</h2>
+      <p>KMxLabs ist mein persönliches Software- und Technologie-Lab. Ich beschäftige mich mit Softwareentwicklung, Webentwicklung, Server-Infrastruktur und verschiedenen technischen Experimenten.</p>
+      <p>Viele Projekte entstehen aus einem konkreten Problem: Eine vorhandene Lösung passt nicht, ist zu eingeschränkt oder existiert noch nicht. Dann baue ich meine eigene.</p>
+      <p>Dabei interessiert mich nicht nur, <strong>dass</strong> etwas funktioniert, sondern auch, <strong>wie</strong> es funktioniert. Von Architektur und Datenbanken bis hin zu Netzwerken und Deployment beschäftige ich mich mit dem gesamten Weg hinter einem Projekt.</p>
     </div>
-    <div class="stats reveal-on-scroll">
-      <div class="stat"><div class="num">40+</div><div class="lbl">Projekte umgesetzt</div></div>
-      <div class="stat"><div class="num">12</div><div class="lbl">Branchen</div></div>
-      <div class="stat"><div class="num">6</div><div class="lbl">Jahre im Feld</div></div>
-      <div class="stat"><div class="num">100%</div><div class="lbl">In-house Team</div></div>
+
+    <div class="about-me reveal-on-scroll">
+      <h3>Hey, ich bin Kolja.</h3>
+      <p>Ich entwickle Software und beschäftige mich mit allem, was zwischen Code, Servern und Infrastruktur passiert.</p>
+      <p>Mein Schwerpunkt liegt auf <strong>Java und Kotlin</strong>. Daneben arbeite ich mit Webtechnologien, Datenbanken, Linux, Docker, Netzwerken und verschiedenen Streaming-Technologien.</p>
+      <p>Ich lerne neue Technologien hauptsächlich dadurch, dass ich eigene Projekte entwickle, Probleme löse und bestehende Systeme immer weiter verbessere. <strong>KMxLabs ist der Ort, an dem diese Projekte zusammenkommen.</strong></p>
     </div>
   </section>
 
-  <section class="pillars" id="services">
+  <!-- ================= WHAT I DO ================= -->
+  <section class="pillars">
     <div class="pillars-head reveal-on-scroll">
-      <span class="eyebrow-standalone">02 — Leistungen</span>
-      <h2>Drei Felder, ein Anspruch</h2>
+      <span class="eyebrow-standalone">What I Do</span>
+      <h2>Fünf Felder, ein Lab</h2>
     </div>
     <div class="pillars-grid">
       <div class="pillar reveal-on-scroll">
         <div class="mark" style="background:var(--gold);"></div>
-        <h3>Research</h3>
-        <p>Explorative Prototypen und Machbarkeitsstudien, bevor eine Zeile Produktcode geschrieben wird.</p>
+        <h3>Software Development</h3>
+        <p>Entwicklung eigener Anwendungen, Backend-Systeme und Tools.</p>
+        <div class="chips"><span>Java</span><span>Kotlin</span><span>SQL</span><span>APIs</span><span>Datenbanken</span><span>Maven</span><span>Gradle</span><span>Softwarearchitektur</span></div>
       </div>
       <div class="pillar reveal-on-scroll">
         <div class="mark" style="background:var(--purple-lt);"></div>
-        <h3>Produkt</h3>
-        <p>Von der ersten Skizze bis zum belastbaren System — gebaut für den täglichen Gebrauch.</p>
+        <h3>Web Development</h3>
+        <p>Entwicklung und Gestaltung eigener Webseiten und Weboberflächen — individuelle Interfaces und klare Layouts statt austauschbarer Templates.</p>
+        <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span><span>Web Interfaces</span><span>Domains</span><span>DNS</span><span>Hosting</span></div>
       </div>
       <div class="pillar reveal-on-scroll">
         <div class="mark" style="background:var(--stone);"></div>
-        <h3>Beratung</h3>
-        <p>Klare Empfehlungen statt Foliensätze. Wir bleiben, bis es funktioniert.</p>
+        <h3>Backend Development</h3>
+        <p>Entwicklung von Systemen, die hinter Anwendungen und Plattformen arbeiten.</p>
+        <div class="chips"><span>Datenbankanbindungen</span><span>Persistente Daten</span><span>APIs</span><span>Rechtesysteme</span><span>Event-Systeme</span><span>Business Logic</span></div>
+      </div>
+      <div class="pillar reveal-on-scroll">
+        <div class="mark" style="background:var(--purple-dp);"></div>
+        <h3>Minecraft Development</h3>
+        <p>Entwicklung eigener Systeme und Plugins für Minecraft-Server mit Java und Kotlin.</p>
+        <div class="chips"><span>Custom Gameplay</span><span>Inventar-GUIs</span><span>Custom Items</span><span>Enchantments</span><span>Economy</span><span>Cross-Server</span><span>Hologramme</span><span>Paper</span><span>Velocity</span></div>
+      </div>
+      <div class="pillar reveal-on-scroll">
+        <div class="mark" style="background:var(--lilac);"></div>
+        <h3>Infrastructure</h3>
+        <p>Aufbau, Betrieb und Weiterentwicklung eigener Server-Infrastruktur.</p>
+        <div class="chips"><span>Linux</span><span>Docker</span><span>Networking</span><span>DNS</span><span>Reverse Proxies</span><span>GitHub Pages</span><span>Monitoring</span><span>Deployment</span></div>
       </div>
     </div>
   </section>
 
-  <section id="process">
-    <div class="process-head reveal-on-scroll">
-      <span class="eyebrow-standalone">03 — Prozess</span>
-      <h2>Wie wir arbeiten</h2>
+  <!-- ================= PROJECT AREAS ================= -->
+  <section id="projects">
+    <div class="areas-head reveal-on-scroll">
+      <span class="eyebrow-standalone">Project Areas</span>
+      <h2>Woran ich arbeite</h2>
     </div>
-    <div class="process-list">
-      <div class="step reveal-on-scroll">
-        <div class="idx">01</div>
-        <div><h3>Verstehen</h3><p>Wir steigen tief in das Problem ein, bevor wir über Lösungen sprechen — mit den Menschen, die es täglich lösen müssen.</p></div>
+    <div class="areas-grid">
+      <div class="area-card reveal-on-scroll">
+        <div class="mark" style="background:var(--gold);"></div>
+        <h3>Software &amp; Backend</h3>
+        <p>Eigene Anwendungen und Backend-Systeme mit Java und Kotlin. Dabei experimentiere ich mit unterschiedlichen Architekturen, Datenbanken, APIs und Möglichkeiten zur Kommunikation zwischen mehreren Systemen.</p>
+        <div class="chips"><span>Java</span><span>Kotlin</span><span>APIs</span></div>
       </div>
-      <div class="step reveal-on-scroll">
-        <div class="idx">02</div>
-        <div><h3>Prototypen</h3><p>Schnelle, ehrliche Prototypen zeigen früh, was funktioniert — und was nicht. Fehler kosten hier nur Tage, nicht Monate.</p></div>
+      <div class="area-card reveal-on-scroll">
+        <div class="mark" style="background:var(--purple-lt);"></div>
+        <h3>Web Projects</h3>
+        <p>Eigene Webseiten und Webanwendungen — von kleinen Landingpages bis zu komplexeren Interfaces. Dabei beschäftige ich mich sowohl mit dem Design als auch mit der technischen Umsetzung und dem Hosting.</p>
+        <div class="chips"><span>Design</span><span>Frontend</span><span>Hosting</span></div>
       </div>
-      <div class="step reveal-on-scroll">
-        <div class="idx">03</div>
-        <div><h3>Bauen</h3><p>Sauberer, wartbarer Code und ein System, das mit den Anforderungen wächst statt an ihnen zu zerbrechen.</p></div>
+      <div class="area-card reveal-on-scroll">
+        <div class="mark" style="background:var(--stone);"></div>
+        <h3>Streaming Infrastructure</h3>
+        <p>Aufbau und Tests einer eigenen Infrastruktur für zuverlässiges mobiles Livestreaming — auch bei schwankenden mobilen Netzwerkbedingungen möglichst stabil.</p>
+        <div class="chips"><span>SRT</span><span>SRTLA</span><span>MediaMTX</span><span>OBS</span><span>Adaptive Bitrate</span><span>Multi-Network-Bonding</span><span>Docker</span></div>
       </div>
-      <div class="step reveal-on-scroll">
-        <div class="idx">04</div>
-        <div><h3>Übergeben</h3><p>Dokumentiert, getestet, verständlich — euer Team kann übernehmen, ohne bei null anzufangen.</p></div>
+      <div class="area-card reveal-on-scroll">
+        <div class="mark" style="background:var(--purple-dp);"></div>
+        <h3>Monitoring</h3>
+        <p>Aufbau eigener Monitoring-Lösungen für Server und Anwendungen, um Systemzustände, Verbindungen, Performance und Ressourcen zentral zu überwachen.</p>
+        <div class="chips"><span>Prometheus</span><span>Grafana</span><span>Docker</span><span>JVM Monitoring</span><span>Service Monitoring</span></div>
+      </div>
+      <div class="area-card reveal-on-scroll">
+        <div class="mark" style="background:var(--ink);"></div>
+        <h3>Experimental Projects</h3>
+        <p>Nicht jedes Projekt bei KMxLabs muss ein fertiges Produkt werden. Ein Teil besteht bewusst aus Experimenten mit neuen Technologien, Protokollen oder Konzepten — um besser zu verstehen, wie sie sich in größeren Projekten sinnvoll einsetzen lassen.</p>
       </div>
     </div>
   </section>
 
-  <section class="quote-section">
-    <div class="quote-wrap reveal-on-scroll">
-      <div class="mark-quote">”</div>
-      <p class="q">KMxLabs hat unser internes Tool in sechs Wochen von der Idee zum produktiven Einsatz gebracht — ohne einen einzigen Show-Stopper.</p>
-      <div class="attr">— Head of Operations, Partnerunternehmen</div>
+  <!-- ================= TECH STACK ================= -->
+  <section id="stack">
+    <div class="stack-head reveal-on-scroll">
+      <span class="eyebrow-standalone">Tech Stack</span>
+      <h2>Werkzeuge, die ich täglich nutze</h2>
+    </div>
+    <div class="stack-grid reveal-on-scroll">
+      <div class="stack-cat">
+        <h4>Languages</h4>
+        <div class="chips"><span>Java</span><span>Kotlin</span><span>SQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
+      </div>
+      <div class="stack-cat">
+        <h4>Development</h4>
+        <div class="chips"><span>Git</span><span>GitHub</span><span>Maven</span><span>Gradle</span><span>REST APIs</span><span>Paper</span><span>Velocity</span></div>
+      </div>
+      <div class="stack-cat">
+        <h4>Data</h4>
+        <div class="chips"><span>MySQL</span><span>SQL</span><span>Persistent Data</span></div>
+      </div>
+      <div class="stack-cat">
+        <h4>Infrastructure</h4>
+        <div class="chips"><span>Linux</span><span>Docker</span><span>Prometheus</span><span>Grafana</span><span>MediaMTX</span></div>
+      </div>
+      <div class="stack-cat">
+        <h4>Networking &amp; Streaming</h4>
+        <div class="chips"><span>DNS</span><span>TCP / UDP</span><span>SRT</span><span>SRTLA</span><span>RTMP</span></div>
+      </div>
     </div>
   </section>
 
+  <!-- ================= PHILOSOPHY ================= -->
+  <section class="philosophy">
+    <div class="phil-wrap reveal-on-scroll">
+      <div class="mark-quote">Build. Break. Improve.</div>
+      <p>Ich lerne Technologien am liebsten, indem ich sie tatsächlich einsetze. Nicht jedes Projekt funktioniert beim ersten Versuch perfekt. Entscheidend ist für mich, Probleme zu verstehen, Systeme zu verbessern und mit jedem Projekt bessere Lösungen zu entwickeln. KMxLabs steht deshalb nicht nur für fertige Software — es ist ein Lab für Ideen, Experimente und reale Projekte.</p>
+    </div>
+    <div class="principles-grid reveal-on-scroll">
+      <div class="principle">
+        <h4>Build for real use</h4>
+        <p>Projekte sollen nicht nur technische Demos sein, sondern möglichst einen echten Zweck erfüllen.</p>
+      </div>
+      <div class="principle">
+        <h4>Understand the system</h4>
+        <p>Nicht nur Libraries verwenden, sondern verstehen, was hinter ihnen passiert.</p>
+      </div>
+      <div class="principle">
+        <h4>Keep experimenting</h4>
+        <p>Neue Technologien ausprobieren und testen, wo sie sinnvoll eingesetzt werden können.</p>
+      </div>
+      <div class="principle">
+        <h4>Improve continuously</h4>
+        <p>Bestehende Systeme weiterentwickeln, refactoren und optimieren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER / CTA ================= -->
   <footer id="contact">
     <section>
       <div class="reveal-on-scroll">
-        <h2>Lass uns<br>etwas bauen.</h2>
-        <a href="mailto:hallo@kmxlabs.de" class="cta-btn">Projekt anfragen</a>
+        <h2>From idea<br>to infrastructure.</h2>
+        <div class="foot-tagline">Experiments that turn into real systems.</div>
+        <div class="btn-row">
+          <a href="mailto:kontakt@kmxlabs.de" class="cta-btn">Kontakt</a>
+          <a href="https://github.com/" class="cta-btn outline" target="_blank" rel="noopener">GitHub</a>
+        </div>
         <div class="foot-meta">
           <div class="foot-brand">
             <img src="assets/logo-icon.png" alt="">
-            <span>KMxLabs © 2026</span>
+            <span>KMxLabs · Software · Infrastructure · Experiments</span>
+          </div>
+          <div class="foot-links">
+            <span>Built by Kolja Menzel</span>
+            <a href="impressum.html">Impressum</a>
           </div>
         </div>
       </div>
